@@ -16,17 +16,7 @@ cors({
 const port = process.env.PORT;
 const dbLink = process.env.DB_LINK
 
-// console.log("Cloudinary Config:", {
-//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME ? "✅ Loaded" : "❌ Missing",
-//   api_key: process.env.CLOUDINARY_CLOUD_API_KEY ? "✅ Loaded" : "❌ Missing",
-//   api_secret: process.env.CLOUDINARY_CLOUD_SECRET_KEY ? "✅ Loaded" : "❌ Missing"
-// });
-
-// console.log("Cloudinary ENV:", {
-//   name: process.env.CLOUDINARY_CLOUD_NAME,
-//   key: process.env.CLOUDINARY_CLOUD_API_KEY,
-//   secret: process.env.CLOUDINARY_CLOUD_SECRET_KEY
-// });
+ 
 const app = express();
 
 app.use(express.json());

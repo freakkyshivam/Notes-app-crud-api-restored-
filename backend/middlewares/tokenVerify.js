@@ -23,7 +23,6 @@ const token = authHeader.startsWith("Bearer ") ? authHeader.split(" ")[1] : auth
         return res.status(403).json({error: "NO token"})
     }
 }
-
     jwt.verify(token, secretKey, (err, decoded)=>{
          if(err){
             return res.status(401).json({error: "Invalid token"})
