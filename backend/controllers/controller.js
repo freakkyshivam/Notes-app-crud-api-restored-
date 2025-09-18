@@ -4,7 +4,7 @@ import Users from '../models/user.model.js'
 import Note from '../models/Notes.js'
 import fs from 'fs'
 import fileUpload from '../utils/fileUpload.js'
-import { log } from 'console'
+ 
 const secretKey = 'shivamKey'
 
 
@@ -72,7 +72,8 @@ const login = async (req,res)=>{
 const allNote = async (req,res)=>{
    try {
       
-     const notes = await Note.find({ user: req.user.id });
+     const notes = await Note.find({ user: req.user.id })
+     .sort({ createdAt: -1 });
      res.json(notes);
    } catch (error) {
      res.status(500).json({ error: error.message });
@@ -86,7 +87,7 @@ const createNote = async (req,res)=>{
       let fileUrl = null;
 //  console.log("file url ", req.file);
     if (req.file) {
-      const cloudRes = await fileUpload(req.file.path);  // upload to Cloudinary
+      const cloudRes = await fileUpload(req.file.path);   
       fileUrl = cloudRes.secure_url;
       fs.unlinkSync(req.file.path);
     }
