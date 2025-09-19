@@ -20,14 +20,12 @@ export default function RegisterPage() {
       email,
       password,
     });
-   
     alert("User registered successfully!");
+     navigate("/login")
   } catch (err) {
     console.error(err);
     alert("Registration failed");
-  }finally{
-    navigate("/login")
-  }
+  } 
 };
 
   return (
