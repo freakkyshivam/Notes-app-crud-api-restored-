@@ -48,13 +48,13 @@ const login = async (req,res)=>{
 
         const user = await Users.findOne({email});
         if(!user){
-            res.status(401).json({error : "Invalid credentials"})
+            return res.status(401).json({error : "Invalid credentials"})
         }
             // decrypt password
         const isMatch = await bcrypt.compare(password,user.password);
 
         if(!isMatch){
-            res.status(401).json({error : "Invalid Password or email"})
+            return res.status(401).json({error : "Invalid Password or email"})
         }
 
         const token = jwt.sign({
@@ -107,7 +107,7 @@ const createNote = async (req,res)=>{
 // update existing notes
 const updateNote = async (req,res)=>{
     try {
- const updatedNote = await Note.findByIdAndUpdate(
+ const updatedNote = await Note.findOneAndUpdate(
              { _id: req.params.id, user: req.user.id },
             req.body,
             { new: true }  
@@ -127,7 +127,7 @@ const updateNote = async (req,res)=>{
 // delete notes
 const deleteNote = async (req,res)=>{
     try {
-   const deleteNote = await Note.findByIdAndDelete({
+   const deleteNote = await Note.findOneAndDelete({
       _id: req.params.id,
             user: req.user.id 
    });
